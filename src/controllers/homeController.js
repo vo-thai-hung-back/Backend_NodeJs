@@ -33,8 +33,38 @@ const getImg = (req, res) => {
 }
 
 const postCreateUser = (req, res) => {
-    console.log("ta co :", req.body)
-    res.send('create users')
+
+    // lấy dữ liệu người dùng 
+    // 3 dòng đầu tiên là cách lấy dữ liệu bình thường
+    let email = req.body.email;
+    let name = req.body.name;
+    let city = req.body.city;
+
+    // dòng dưới lấy dữ liệu gọn hơn 3 dòng trên
+    //let {email , name , city} = req.body;
+
+    // dòng dưới coi liệu của mình có đúng giá trị mà đã nhập ko
+    //console.log("email= ", email, "name = ", name, " city =", city)
+
+    // dòng dưới giúp hiển thị dữ liệu , coi thử dữ liệu có nhận ko
+    //console.log("ta co :", req.body)
+
+    // dòng dưới đừng quan tâm
+    //res.send('create users')
+
+    // những dòng dưới là đưa dữ liệu vào database
+    // ? ? ? là code của tk mysql2
+    connection.query(
+        `INSERT INTO
+        Users (email,name,city)
+        VALUES (?,?,?)`,
+        [email, name, city],
+        function (err, results) {
+            console.log(results);
+            res.send('Created user success')
+        }
+    )
+
 
 }
 
