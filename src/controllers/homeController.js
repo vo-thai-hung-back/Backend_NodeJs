@@ -32,8 +32,15 @@ const getImg = (req, res) => {
     res.send('sample.ejs')
 }
 
+const postCreateUser = (req, res) => {
+    console.log("ta co :", req.body)
+    res.send('create users')
+
+}
+
 module.exports = {
     getHomepage,
     getImg,
-    getHomepage2
+    getHomepage2,
+    postCreateUser
 }
