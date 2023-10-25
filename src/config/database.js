@@ -1,5 +1,5 @@
 require('dotenv').config();
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
 
 // code ở dưới dành cho 1 client
 // const connection = mysql.createConnection({

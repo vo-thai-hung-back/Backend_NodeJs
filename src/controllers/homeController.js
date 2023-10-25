@@ -31,8 +31,8 @@ const getHomepage2 = (req, res) => {
 const getImg = (req, res) => {
     res.send('sample.ejs')
 }
-
-const postCreateUser = (req, res) => {
+//viết dưới dạng async
+const postCreateUser = async (req, res) => {
 
     // lấy dữ liệu người dùng 
     // 3 dòng đầu tiên là cách lấy dữ liệu bình thường
@@ -54,17 +54,29 @@ const postCreateUser = (req, res) => {
 
     // những dòng dưới là đưa dữ liệu vào database
     // ? ? ? là code của tk mysql2
-    connection.query(
-        `INSERT INTO
-        Users (email,name,city)
-        VALUES (?,?,?)`,
-        [email, name, city],
-        function (err, results) {
-            console.log(results);
-            res.send('Created user success')
-        }
-    )
+    // connection.query(
+    //     `INSERT INTO
+    //     Users (email,name,city)
+    //     VALUES (?,?,?)`,
+    //     [email, name, city],
+    //     function (err, results) {
+    //         console.log(results);
+    //         res.send('Created user success')
+    //     }
+    // )
 
+    // viết dưới dạng async await
+    let [results, fields] = await connection.query(
+        `INSERT INTO Users (email,name,city) VALUES (?,?,?) `, [email, name, city]
+    );
+
+    res.send('Created user success');
+
+}
+
+const getCreatePage = (req, res) => {
+
+    return res.render('create.ejs');
 
 }
 
@@ -72,5 +84,6 @@ module.exports = {
     getHomepage,
     getImg,
     getHomepage2,
-    postCreateUser
+    postCreateUser,
+    getCreatePage
 }

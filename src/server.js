@@ -22,13 +22,13 @@ app.use('/', webRouters);
 
 
 // simple query
-connection.query(
-    'select * from Users u ',
-    function (err, results, fields) {
-        console.log(results);
-        //console.log(fields);
-    }
-);
+// connection.query(
+//     'select * from Users u ',
+//     function (err, results, fields) {
+//         console.log(results);
+//         //console.log(fields);
+//     }
+// );
 
 
 
