@@ -1,7 +1,16 @@
 const { json } = require('express');
 const connection = require('../config/database')
 
+
+
 const getHomepage = (req, res) => {
+
+    return res.render('homepage.ejs');
+
+}
+
+
+const getHomepage2 = (req, res) => {
 
     let users = [];
     connection.query(
@@ -25,5 +34,6 @@ const getImg = (req, res) => {
 
 module.exports = {
     getHomepage,
-    getImg
+    getImg,
+    getHomepage2
 }
