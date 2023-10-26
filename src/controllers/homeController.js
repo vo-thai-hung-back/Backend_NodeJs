@@ -1,11 +1,17 @@
 const { json } = require('express');
 const connection = require('../config/database')
+const { getAllUsers } = require('../services/CRUDService')
+
+
+const getHomepage = async (req, res) => {
 
 
 
-const getHomepage = (req, res) => {
+    //console.log("kiem tra du lieu : ", results);
 
-    return res.render('homepage.ejs');
+    let results = await getAllUsers();
+
+    return res.render('homepage.ejs', { listUsers: results });
 
 }
 
