@@ -75,45 +75,45 @@
 
     <div class="table-container">
 
-        <%=JSON.stringify(listUsers) %>
-            <div class="title">List User</div>
-            <table>
+        <!-- // dòng dưới để chuyển qua kiểu JSON
+                vì lỗi [object Object]
+            <%=JSON.stringify(listUsers) %> -->
+        <div class="title">List User</div>
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Points</th>
+                <th>Points</th>
+                <th>Actions</th>
+            </tr>
+
+            <!-- dòng dưới là
+                vòng lặp for trong ejs -->
+
+            <% for (let i=0; i < listUsers.length ; i++) {%>
                 <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Points</th>
-                    <th>Points</th>
-                    <th>Actions</th>
-                </tr>
-                <tr>
-                    <td>Peter</td>
-                    <td>Griffin</td>
-                    <td>$100</td>
-                    <td>$100</td>
                     <td>
-                        <button>Edit</button>
+                        <%= listUsers[i].id %>
+                    </td>
+                    <td>
+                        <%= listUsers[i].email %>
+                    </td>
+                    <td>
+                        <%= listUsers[i].name %>
+                    </td>
+                    <td>
+                        <%= listUsers[i].city %>
+                    </td>
+                    <td>
+                        <button><a href="/update/<%= listUsers[i].id %>">Edit</a></button>
                         <button>Delete</button>
                     </td>
                 </tr>
-                <tr>
-                    <td>Lois</td>
-                    <td>Griffin</td>
-                    <td>$150</td>
-                    <td>$100</td>
-                </tr>
-                <tr>
-                    <td>Joe</td>
-                    <td>Swanson</td>
-                    <td>$300</td>
-                    <td>$100</td>
-                </tr>
-                <tr>
-                    <td>Cleveland</td>
-                    <td>Brown</td>
-                    <td>$250</td>
-                    <td>$100</td>
-                </tr>
-            </table>
+                <% } %>
+
+
+        </table>
     </div>
 </body>
 

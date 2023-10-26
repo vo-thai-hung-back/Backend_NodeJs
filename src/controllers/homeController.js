@@ -86,10 +86,18 @@ const getCreatePage = (req, res) => {
 
 }
 
+const getUpdatePage = (req, res) => {
+    const userId = req.params.id;
+    //console.log("req.params : ", req.params.id)
+    return res.render('edit.ejs');
+
+}
+
 module.exports = {
     getHomepage,
     getImg,
     getHomepage2,
     postCreateUser,
-    getCreatePage
+    getCreatePage,
+    getUpdatePage
 }
