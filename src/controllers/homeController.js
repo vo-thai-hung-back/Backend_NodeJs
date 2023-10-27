@@ -1,6 +1,6 @@
 const { json } = require('express');
 const connection = require('../config/database')
-const { getAllUsers, getUserByID } = require('../services/CRUDService')
+const { getAllUsers, getUserByID, updateUserById } = require('../services/CRUDService')
 
 
 const getHomepage = async (req, res) => {
@@ -80,6 +80,7 @@ const postCreateUser = async (req, res) => {
 
 }
 
+
 const getCreatePage = (req, res) => {
 
     return res.render('create.ejs');
@@ -100,11 +101,55 @@ const getUpdatePage = async (req, res) => {
 
 }
 
+const postUpdateUser = async (req, res) => {
+
+    // lấy dữ liệu người dùng 
+    // 3 dòng đầu tiên là cách lấy dữ liệu bình thường
+    let email = req.body.email;
+    let name = req.body.name;
+    let city = req.body.city;
+
+    let userId = req.body.userId;
+
+    // dòng dưới lấy dữ liệu gọn hơn 3 dòng trên
+    //let {email , name , city} = req.body;
+
+    // dòng dưới coi liệu của mình có đúng giá trị mà đã nhập ko
+    //console.log("email= ", email, "name = ", name, " city =", city, "id =", userId)
+
+    // dòng dưới giúp hiển thị dữ liệu , coi thử dữ liệu có nhận ko
+    //console.log("ta co :", req.body)
+
+    // dòng dưới đừng quan tâm
+    //res.send('create users')
+
+    // những dòng dưới là đưa dữ liệu vào database
+    // ? ? ? là code của tk mysql2
+    // connection.query(
+    //     `INSERT INTO
+    //     Users (email,name,city)
+    //     VALUES (?,?,?)`,
+    //     [email, name, city],
+    //     function (err, results) {
+    //         console.log(results);
+    //         res.send('Created user success')
+    //     }
+    // )
+
+    // viết dưới dạng async await
+    await updateUserById(email, name, city, userId);
+
+    //res.send('Update user success');
+    res.redirect('/');
+
+}
+
 module.exports = {
     getHomepage,
     getImg,
     getHomepage2,
     postCreateUser,
     getCreatePage,
-    getUpdatePage
+    getUpdatePage,
+    postUpdateUser
 }

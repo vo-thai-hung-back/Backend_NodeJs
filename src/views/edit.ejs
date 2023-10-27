@@ -14,9 +14,18 @@
         <a href="/create">News</a>
     </div>
     <div class="form-add-new">
-        <form action="/create-new" method="post">
+        <form action="/update-user" method="post">
             <fieldset>
                 <legend>Update a users</legend>
+
+                <!-- không cho người dùng thay dổi id
+                vì id là thứ -->
+                <div class="input-group d-none">
+                    <label>Id
+                    </label>
+                    <input type="text" id="email" name="userId" value="<%= usersEdit.id %>" />
+
+                </div>
 
                 <div class="input-group">
                     <label>Email
