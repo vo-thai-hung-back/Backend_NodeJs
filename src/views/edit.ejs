@@ -19,22 +19,23 @@
                 <legend>Update a users</legend>
 
                 <div class="input-group">
-                    <label>Name
-                    </label>
-                    <input type="text" id="name" name="name" />
-
-                </div>
-                <div class="input-group">
                     <label>Email
                     </label>
-                    <input type="text" id="email" name="email" />
+                    <input type="text" id="email" name="email" value="<%= usersEdit.email %>" />
 
                 </div>
+
+                <div class="input-group">
+                    <label>Name
+                    </label>
+                    <input type="text" id="name" name="name" value="<%= usersEdit.name %>" />
+
+                </div>
+
                 <div class="input-group">
                     <label>City
                     </label>
-                    <input type="text" id="city" name="city" />
-
+                    <input type="text" id="city" name="city" value="<%= usersEdit.city %>" />
                 </div>
                 <div>
                     <button>Save</button>

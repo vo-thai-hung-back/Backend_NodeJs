@@ -1,6 +1,6 @@
 const { json } = require('express');
 const connection = require('../config/database')
-const { getAllUsers } = require('../services/CRUDService')
+const { getAllUsers, getUserByID } = require('../services/CRUDService')
 
 
 const getHomepage = async (req, res) => {
@@ -86,10 +86,17 @@ const getCreatePage = (req, res) => {
 
 }
 
-const getUpdatePage = (req, res) => {
-    const userId = req.params.id;
+const getUpdatePage = async (req, res) => {
+    const userId = await req.params.id;
+    //console.log("aad", userId)
+
+    let user = await getUserByID(userId);
+    //console.log("req.params : ", user)
+
+
+    //console.log("bien ", user)
     //console.log("req.params : ", req.params.id)
-    return res.render('edit.ejs');
+    return res.render('edit.ejs', { usersEdit: user });
 
 }
 
